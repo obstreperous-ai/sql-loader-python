@@ -2,7 +2,7 @@
 
 import sys
 from pathlib import Path
-from typing import List, Optional
+from typing import List
 
 import click
 
@@ -26,9 +26,7 @@ def cli() -> None:
     required=True,
     help="Database connection string (or set SQL_LOADER_CONNECTION env var)",
 )
-@click.option(
-    "-v", "--verbose", is_flag=True, help="Enable verbose output"
-)
+@click.option("-v", "--verbose", is_flag=True, help="Enable verbose output")
 def run(files: tuple, connection: str, verbose: bool) -> None:
     """Execute SQL files against a database.
 
@@ -36,7 +34,8 @@ def run(files: tuple, connection: str, verbose: bool) -> None:
 
     Examples:
         sql-loader run -c sqlite:///test.db schema.sql data.sql
-        SQL_LOADER_CONNECTION=postgresql://user:pass@localhost/db sql-loader run migrations/*.sql
+        SQL_LOADER_CONNECTION=postgresql://user:pass@localhost/db \\
+            sql-loader run migrations/*.sql
     """
     if not files:
         click.echo("Error: No SQL files specified", err=True)

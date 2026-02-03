@@ -1,7 +1,7 @@
 """SQL execution logic using SQLAlchemy."""
 
 from pathlib import Path
-from typing import List, Optional
+from typing import List
 
 from sqlalchemy import create_engine, text
 from sqlalchemy.engine import Engine

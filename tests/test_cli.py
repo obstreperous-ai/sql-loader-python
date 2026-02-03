@@ -26,9 +26,7 @@ def test_cli_help() -> None:
 def test_run_command_no_files() -> None:
     """Test run command with no files specified."""
     runner = CliRunner()
-    result = runner.invoke(
-        cli, ["run", "-c", "sqlite:///:memory:"]
-    )
+    result = runner.invoke(cli, ["run", "-c", "sqlite:///:memory:"])
     assert result.exit_code == 1
     assert "No SQL files specified" in result.output
 
@@ -114,9 +112,7 @@ def test_run_command_invalid_sql() -> None:
 def test_test_connection_success() -> None:
     """Test test-connection command with valid connection."""
     runner = CliRunner()
-    result = runner.invoke(
-        cli, ["test-connection", "-c", "sqlite:///:memory:"]
-    )
+    result = runner.invoke(cli, ["test-connection", "-c", "sqlite:///:memory:"])
     assert result.exit_code == 0
     assert "Connection successful" in result.output
 
@@ -124,9 +120,7 @@ def test_test_connection_success() -> None:
 def test_test_connection_failure() -> None:
     """Test test-connection command with invalid connection."""
     runner = CliRunner()
-    result = runner.invoke(
-        cli, ["test-connection", "-c", "invalid://connection"]
-    )
+    result = runner.invoke(cli, ["test-connection", "-c", "invalid://connection"])
     assert result.exit_code == 1
     assert "Connection failed" in result.output
 

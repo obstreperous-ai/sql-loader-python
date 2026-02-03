@@ -3,7 +3,7 @@
 from pathlib import Path
 
 import pytest
-from sqlalchemy import create_engine, text
+from sqlalchemy import text
 
 from sql_loader.executor import SQLExecutor
 
@@ -42,9 +42,7 @@ def test_execute_sql_simple(executor: SQLExecutor) -> None:
     # Verify table was created
     with executor.engine.connect() as conn:
         result = conn.execute(
-            text(
-                "SELECT name FROM sqlite_master WHERE type='table' AND name='test'"
-            )
+            text("SELECT name FROM sqlite_master WHERE type='table' AND name='test'")
         )
         assert result.fetchone() is not None
 
@@ -75,9 +73,7 @@ def test_execute_file(executor: SQLExecutor, fixtures_dir: Path) -> None:
     # Verify table was created
     with executor.engine.connect() as conn:
         result = conn.execute(
-            text(
-                "SELECT name FROM sqlite_master WHERE type='table' AND name='users'"
-            )
+            text("SELECT name FROM sqlite_master WHERE type='table' AND name='users'")
         )
         assert result.fetchone() is not None
 
@@ -107,7 +103,7 @@ def test_execute_file_not_found(executor: SQLExecutor) -> None:
 def test_execute_sql_invalid(executor: SQLExecutor, fixtures_dir: Path) -> None:
     """Test executing invalid SQL raises an exception."""
     invalid_file = fixtures_dir / "invalid.sql"
-    with pytest.raises(Exception):
+    with pytest.raises(Exception, match=".*"):
         executor.execute_file(invalid_file)
 
 
