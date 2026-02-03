@@ -23,7 +23,6 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-          cache: 'pip'
       
       - name: Upgrade pip
         run: |
@@ -31,7 +30,7 @@ jobs:
       
       - name: Install project dependencies
         run: |
-          # Install core dependencies
+          # Install core dependencies (versions will be pinned in pyproject.toml when created)
           pip install click sqlalchemy
           
           # Install testing framework
