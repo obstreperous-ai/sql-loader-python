@@ -7,7 +7,7 @@ name = "sql-loader"
 version = "0.1.0"
 description = "A lean CLI utility to run SQL scripts in minimal environments"
 authors = [{name = "obstreperous-ai"}]
-license = "MIT"
+license = {text = "MIT"}
 readme = "README.md"
 requires-python = ">=3.8"
 classifiers = [
