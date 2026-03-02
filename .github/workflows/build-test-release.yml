@@ -94,7 +94,7 @@ jobs:
         run: python -m build
 
       - name: Upload wheel artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: wheel
           path: dist/*.whl
@@ -135,7 +135,7 @@ jobs:
         run: pyinstaller --onefile --name sql-loader src/sql_loader/cli.py
 
       - name: Upload binary artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ${{ matrix.artifact-name }}
           path: dist/${{ matrix.binary-name }}
